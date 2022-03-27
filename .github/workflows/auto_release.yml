@@ -9,7 +9,7 @@ jobs:
       TOKEN: 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
       TAG: v0.3.0
       USER: lfbdev
-      REPO: golang-demo-4
+      REPO: stream
       PLUGINDIR: .devstream
       GOOS: linux
       GOARCH: amd64
@@ -44,7 +44,7 @@ jobs:
                read_dir ${{ env.PLUGINDIR }}"/"$file
              else
                echo 'Uploading '$file' ...'
-               github-release upload --security-token  ${{ env.TOKEN }}  --user ${{ env.USER }}  --repo ${{ env.REPO }}  --tag ${{ env.TAG }}  --file  ${{ env.PLUGINDIR }}"/"$file --name $file
+               github-release upload --security-token  ${{ env.GITHUB_TOKEN }}  --user ${{ env.USER }}  --repo ${{ env.REPO }}  --tag ${{ env.TAG }}  --file  ${{ env.PLUGINDIR }}"/"$file --name $file
                echo $file' uploaded.'
              fi
           done
