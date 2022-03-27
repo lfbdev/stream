@@ -1,9 +1,8 @@
 name: issue created
 on:
-  issues:
-    types: [opened, reopened, edited, closed]
-  issue_comment:
-    types: [created, edited, deleted]
+  push:
+    branches:
+      - main
 jobs:
   build-and-release-on-linux:
     env:
