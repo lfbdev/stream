@@ -8,8 +8,8 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TAG: v0.3.0
-      USER: merico-dev
-      REPO: stream
+      USER: lfbdev
+      REPO: golang-demo-4
       PLUGINDIR: .devstream
       GOOS: linux
       GOARCH: amd64
@@ -31,7 +31,10 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-
+      - name: Build
+        run: make build
+      - name: Install Github-release
+        run: go install github.com/github-release/github-release@latest
       - name: upload
         run: |
           echo ${{ env.PLUGINDIR }}
