@@ -6,7 +6,6 @@ on:
 jobs:
   build-and-release-on-linux:
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TAG: v0.3.0
       USER: lfbdev
       REPO: golang-demo-4
@@ -44,7 +43,7 @@ jobs:
                read_dir ${{ env.PLUGINDIR }}"/"$file
              else
                echo 'Uploading '$file' ...'
-               github-release upload --security-token ${{ env.GITHUB_TOKEN }} --user ${{ env.USER }} --repo ${{ env.REPO }} --tag ${{ env.TAG }} --file  ${{ env.PLUGINDIR }}"/"$file --name $file
+               github-release upload --security-token ${{ secrets.GITHUB_TOKEN }} --user ${{ env.USER }} --repo ${{ env.REPO }} --tag ${{ env.TAG }} --file  ${{ env.PLUGINDIR }}"/"$file --name $file
                echo $file' uploaded.'
              fi
           done
