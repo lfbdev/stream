@@ -31,10 +31,7 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: Build
-        # run: make build
-      - name: Install Github-release
-        # run: go install github.com/github-release/github-release@latest
+
       - name: upload
         run: |
           echo ${{ env.PLUGINDIR }}
