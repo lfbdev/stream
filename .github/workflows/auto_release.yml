@@ -32,12 +32,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       - name: Build
-        run: make build
+        # run: make build
       - name: Install Github-release
-        run: go install github.com/github-release/github-release@latest
+        # run: go install github.com/github-release/github-release@latest
       - name: upload
-        run: ｜
-            echo ${{ env.PLUGINDIR }}
+        run: |
+          echo ${{ env.PLUGINDIR }}
 #           for file in `ls ${{ PLUGINDIR }}`
 #             do
 #              if [ -d ${{ PLUGINDIR }}"/"$file ]
