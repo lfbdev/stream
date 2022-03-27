@@ -37,11 +37,11 @@ jobs:
         run: go install github.com/github-release/github-release@latest
       - name: upload
         run: ｜
-          for file in `ls ${{PLUGINDIR}}`
+          for file in `ls ${{ PLUGINDIR }}`
             do
-             if [ -d ${{PLUGINDIR}}"/"$file ]
+             if [ -d ${{ PLUGINDIR }}"/"$file ]
              then
-               read_dir ${{PLUGINDIR}}"/"$file
+               read_dir ${{ PLUGINDIR }}"/"$file
              else
                echo 'Uploading '$file' ...'
                github-release upload --security-token $github_token --user $user --repo $repo --tag $tag --file  $plugin_dir"/"$file --name $file
