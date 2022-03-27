@@ -37,7 +37,6 @@ jobs:
         run: go install github.com/github-release/github-release@latest
       - name: upload
         run: |
-          echo ${{ env.PLUGINDIR }}
           for file in `ls ${{ env.PLUGINDIR }}`
             do
              if [ -d ${{ env.PLUGINDIR }}"/"$file ]
