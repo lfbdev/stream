@@ -6,7 +6,7 @@ on:
 jobs:
   build-and-release-on-linux:
     env:
-      TAG: v0.3.0
+      TAG: v0.3.0.1
       USER: lfbdev
       REPO: stream
       PLUGINDIR: .devstream
