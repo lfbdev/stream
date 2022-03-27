@@ -35,14 +35,14 @@ jobs:
       - name: upload
         run: |
           echo ${{ env.PLUGINDIR }}
-#           for file in `ls ${{ PLUGINDIR }}`
-#             do
-#              if [ -d ${{ PLUGINDIR }}"/"$file ]
-#              then
-#                read_dir ${{ PLUGINDIR }}"/"$file
-#              else
-#                echo 'Uploading '$file' ...'
-#                github-release upload --security-token $github_token --user $user --repo $repo --tag $tag --file  $plugin_dir"/"$file --name $file
-#                echo $file' uploaded.'
-#              fi
-#           done
+          for file in `ls ${{ env.PLUGINDIR }}`
+            do
+             if [ -d ${{ env.PLUGINDIR }}"/"$file ]
+             then
+               read_dir ${{ env.PLUGINDIR }}"/"$file
+             else
+               echo 'Uploading '$file' ...'
+               github-release upload --security-token ${{ env.GITHUB_TOKEN }} --user ${{ env.USER }} --repo ${{ env.REPO }} --tag ${{ env.TAG }} --file  ${{ env.PLUGINDIR }}"/"$file --name $file
+               echo $file' uploaded.'
+             fi
+          done
