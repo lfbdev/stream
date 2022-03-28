@@ -12,24 +12,7 @@ plugin_dir=.devstream
 GOOS=$2
 GOARCH=$3
 
-# install github-release for uploading
 cd ../..
-go install github.com/github-release/github-release@latest
-
-# upload each plugin
-function upload(){
-for file in `ls $plugin_dir`
-do
- if [ -d $plugin_dir"/"$file ]
- then
-   read_dir $plugin_dir"/"$file
- else
-   echo 'Uploading '$file' ...'
-   github-release upload --security-token $github_token --user $user --repo $repo --tag $tag --file  $plugin_dir"/"$file --name $file
-   echo $file' uploaded.'
- fi
-done
-}
 
 # upload dtm
 echo 'Uploading 'dtm-${GOOS}-${GOARCH}' ...'
@@ -41,5 +24,15 @@ echo 'Uploading 'dtm-${GOOS}-${GOARCH}.md5' ...'
 github-release upload --security-token $github_token --user $user --repo $repo --tag $tag --file dtm-${GOOS}-${GOARCH}.md5 --name dtm-${GOOS}-${GOARCH}.md5
 echo dtm-${GOOS}-${GOARCH}.md5' uploaded.'
 
-# upload plugins and .md5 files
-upload $plugin_dir
+# upload each plugin
+for file in `ls $plugin_dir`
+do
+ if [ -d $plugin_dir"/"$file ]
+ then
+   read_dir $plugin_dir"/"$file
+ else
+   echo 'Uploading '$file' ...'
+   github-release upload --security-token $github_token --user $user --repo $repo --tag $tag --file  $plugin_dir"/"$file --name $file
+   echo $file' uploaded.'
+ fi
+done
