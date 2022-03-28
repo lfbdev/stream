@@ -1,7 +1,10 @@
 name: Automated Release
+# on:
+#   release:
+#     types: [published]
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ main ]
 jobs:
   # release for 
   build-and-release-on-linux:
@@ -30,12 +33,12 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: Build
-        run: make build
+#       - name: Build
+#         run: make build
       - name: Install Github-release
         run: go install github.com/github-release/github-release@latest
       - name: upload
-        run: bash -eo ./build/package/upload_assets.sh ${{ env.TAG }} ${{ env.GOOS }} ${{ env.GOARCH }}
+        run: bash -e ./build/package/upload_assets.sh ${{ env.TAG }} ${{ env.GOOS }} ${{ env.GOARCH }}
           
   # release for darwin-amd64
   build-and-release-on-darwin-amd64:
