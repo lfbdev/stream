@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-go-
       - name: Build
         run: |
-         echo ${{ github.event.release.body }}
+         echo ${{ github.event.body }}
          make build
       - name: Install Github-release
         run: go install github.com/github-release/github-release@latest
