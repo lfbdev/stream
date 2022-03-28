@@ -1,8 +1,11 @@
 name: issue created
+# on:
+#   push:
+#     branches:
+#       - main
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 jobs:
   build-and-release-on-linux:
     env:
@@ -36,6 +39,7 @@ jobs:
         run: go install github.com/github-release/github-release@latest
       - name: upload
         run: |
+          echo ${{ github.event }}
           for file in `ls ${{ env.PLUGINDIR }}`
             do
              if [ -d ${{ env.PLUGINDIR }}"/"$file ]
