@@ -1,16 +1,17 @@
 #! /bin/bash -e
 
+github_token=$1
 #tag=v0.3.0
-tag=$1
+tag=$2
 user=lfbdev
 repo=stream
-github_token=$GITHUB_TOKEN
+
 plugin_dir=.devstream
 
 #GOOS=$(go env GOOS)
 #GOARCH=$(go env GOARCH)
-GOOS=$2
-GOARCH=$3
+GOOS=$3
+GOARCH=$4
 
 # upload dtm
 echo 'Uploading 'dtm-${GOOS}-${GOARCH}' ...'
