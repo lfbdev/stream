@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-release-on-linux:
     env:
-      TAG: ${{ github.event.published }}
+      TAG: ${{ github.ref_name }}
       USER: lfbdev
       REPO: stream
       PLUGINDIR: .devstream
