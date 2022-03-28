@@ -38,7 +38,7 @@ jobs:
       - name: Install Github-release
         run: go install github.com/github-release/github-release@latest
       - name: upload
-        run: bash -e ./build/package/upload_assets.sh ${{ env.GITHUB_TOKEN }} ${{ env.TAG }} ${{ env.GOOS }} ${{ env.GOARCH }}
+        run: bash -e ./build/package/upload_assets.sh ${{ secrets.GITHUB_TOKEN }} ${{ env.TAG }} ${{ env.GOOS }} ${{ env.GOARCH }}
           
   # release for darwin-amd64
   build-and-release-on-darwin-amd64:
