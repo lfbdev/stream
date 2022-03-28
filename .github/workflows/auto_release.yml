@@ -17,6 +17,7 @@ jobs:
       GOARCH: amd64
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ github.event.body }}
       - run: echo "🐧 This job is now running on a ${{ runner.os }}-${{ runner.arch }} server hosted by GitHub!"
       - name: Checkout
         uses: actions/checkout@v2
@@ -39,7 +40,6 @@ jobs:
         run: go install github.com/github-release/github-release@latest
       - name: upload
         run: |
-          echo ${{ github.event }}
           for file in `ls ${{ env.PLUGINDIR }}`
             do
              if [ -d ${{ env.PLUGINDIR }}"/"$file ]
