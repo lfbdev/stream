@@ -12,8 +12,6 @@ plugin_dir=.devstream
 GOOS=$2
 GOARCH=$3
 
-cd ../..
-
 # upload dtm
 echo 'Uploading 'dtm-${GOOS}-${GOARCH}' ...'
 github-release upload --security-token $github_token --user $user --repo $repo --tag $tag --file dtm --name dtm-${GOOS}-${GOARCH}
