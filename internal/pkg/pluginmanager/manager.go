@@ -39,8 +39,9 @@ func DownloadPlugins(conf *configloader.Config) error {
 					return err
 				}
 				log.Successf("[%s] download succeeded.", pluginFileName)
+			} else {
+				return err
 			}
-			return err
 		}
 		// .md5 does not exist
 		if _, err := os.Stat(filepath.Join(pluginDir, pluginMD5FileName)); err != nil {
@@ -50,8 +51,9 @@ func DownloadPlugins(conf *configloader.Config) error {
 					return err
 				}
 				log.Successf("[%s] download succeeded.", pluginMD5FileName)
+			} else {
+				return err
 			}
-			return err
 		}
 		// check if the plugin matches with .md5
 		isMD5Match, err := md5.FileMatchesMD5(filepath.Join(pluginDir, pluginFileName), filepath.Join(pluginDir, pluginMD5FileName))
