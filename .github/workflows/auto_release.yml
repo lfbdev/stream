@@ -37,32 +37,17 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: Build
-        run: |
-          date
-          make build
-          date
-      - name: Build -j2
-        run: |
-          date
-          make build -j2
-          date
       - name: Build -j4
         run: |
           date
           make build -j4
-          date
-      - name: Build -j8
-        run: |
-          date
-          make build -j8
-          date        
+          date     
       - name: Install Github-release
         run: go install github.com/github-release/github-release@latest
       - name: upload
         run: bash -e ./build/package/upload_assets.sh ${{ secrets.GITHUB_TOKEN }} ${{ env.TAG }} ${{ env.GOOS }} ${{ env.GOARCH }}
           
-  # release for darwin-amd64
+  # release for darwin-arm64
   build-and-release-on-darwin-amd64:
     env:
       TAG: ${{ github.ref_name }}
@@ -70,7 +55,7 @@ jobs:
       REPO: stream
       PLUGINDIR: .devstream
       GOOS: darwin
-      GOARCH: amd64
+      GOARCH: arm64
     runs-on: macos-latest
     steps:
       - run: echo "🐧 This job is now running on a ${{ runner.os }}-${{ runner.arch }} server hosted by GitHub!"
@@ -93,26 +78,11 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: Build
-        run: |
-          date
-          make build
-          date
-      - name: Build -j2
-        run: |
-          date
-          make build -j2
-          date
       - name: Build -j4
         run: |
           date
           make build -j4
           date
-      - name: Build -j8
-        run: |
-          date
-          make build -j8
-          date 
       - name: Install Github-release
         run: go install github.com/github-release/github-release@latest
       - name: upload
