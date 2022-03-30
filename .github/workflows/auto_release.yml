@@ -36,7 +36,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       - name: Build
-        run: make build
+        run: |
+          date
+          make build
+          date
+      - name: Build -j2
+        run: |
+          date
+          make build -j2
+          date
+      - name: Build -j4
+        run: |
+          date
+          make build -j4
+          date
+      - name: Build -j8
+        run: |
+          date
+          make build -j8
+          date        
       - name: Install Github-release
         run: go install github.com/github-release/github-release@latest
       - name: upload
@@ -72,7 +90,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       - name: Build
-        run: make build
+        run: |
+          date
+          make build
+          date
+      - name: Build -j2
+        run: |
+          date
+          make build -j2
+          date
+      - name: Build -j4
+        run: |
+          date
+          make build -j4
+          date
+      - name: Build -j8
+        run: |
+          date
+          make build -j8
+          date 
       - name: Install Github-release
         run: go install github.com/github-release/github-release@latest
       - name: upload
